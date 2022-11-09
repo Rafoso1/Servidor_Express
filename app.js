@@ -3,6 +3,21 @@ const handlebars = require('express-handlebars');
 const app = express()
 const port = 3000
 
+// const { MongoClient } = require("mongodb");
+
+// const uri = "mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0";
+// const client = new MongoClient(uri);
+// import res from "express/lib/response";
+
+// import * as path from "path";
+// import { fileURLToPath } from "url";
+// const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// app.use(express.static(`${__dirname}/views`));
+// app.use(express.json());
+
+// app.use(bodyParser.urlencoded({ extended: false }));
+
 app.set('view engine', 'handlebars');
 app.engine('handlebars', handlebars.engine({
 	layoutsDir: __dirname + '/views/layouts',
@@ -12,55 +27,26 @@ app.engine('handlebars', handlebars.engine({
 app.get('/', (req, res) => {
 	res.render('home');
 });
-
-app.get("Sign-up", (req, res) => {
-	res.render("Sign-up");
+app.get("/login", (req, res) => {
+	res.render("src/user/login");
+});
+app.get("/Sign-up", (req, res) => {
+	res.render("src/user/Sign-up");
 });
 
-app.get("movies", (req, res) => {
+app.get("/movies", (req, res) => {
 	res.render("src/user/movies");
 });
-app.get("Cuenta", (req, res) => {
-	res.render("Cuenta");
+app.get("/Cuenta", (req, res) => {
+	res.render("src/user/Cuenta");
 });
-app.get("Asientos", (req, res) => {
-	res.render("Asientos");
+app.get("/Asientos", (req, res) => {
+	res.render("src/user/Asientos");
 });
 
 app.listen(port, () => {
 	console.log(`Server is running on port ${port}`);
 });
-
-// Path: views/layouts/main.handlebars
-
-
-//const { MongoClient } = require("mongodb");
-//import res from "express/lib/response";
-
-// const uri =
-// 	"mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0";
-
-//const client = new MongoClient(uri);
-
-// import * as path from "path";
-// import { fileURLToPath } from "url";
-// const __dirname = path.dirname(fileURLToPath(import.meta.url));
-
-//console.log("__dirname: ", __dirname);
-
-
-// serve all other static files like CSS, images, etc
-// app.use(express.static(`${__dirname}/views`));
-// app.use(express.json());
-//--------------------------------------------------------------------
-
-// esto es para que pueda recibir datos de un formulario en formato json y poder usarlos en el body de la request
-// app.use(bodyParser.urlencoded({ extended: false }));
-
-
-
-
-/// Hasta aca es basicamente copy paste, excepto por el uri de la base de datos
 
 //Ruta de ejemplo para una query a la database
 // app.get("/api_get", async (req, res) => {
